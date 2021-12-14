@@ -15,10 +15,6 @@ import sys
 
 def countingSort(arr):
     # Write your code here
-    maxim = -math.inf
-    for num in arr:
-        if num > maxim:
-            maxim = num
     count= [0]*100
     
     for nu in arr:
