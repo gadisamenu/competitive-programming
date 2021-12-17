@@ -11,4 +11,3 @@ class Solution:
             else: # it overlap exist, then update the latest end
                 list_m[-1][1] = max(list_m[-1][1], interval[1])
         
-        return list_m
