@@ -2,7 +2,6 @@ class Solution:
     def isValid(self, s: str) -> bool:
         state = True
         parentheses= { '(':')','{':'}','[':']'}
-        opening=[]
         for brace in s:
             if brace in parentheses:
                 opening.append(brace)
