@@ -22,7 +22,6 @@ class TopVotedCandidate:
             else:
                 winners.append(persons[j])
             j+=1
-        print(winners)
         return winners
        
     
