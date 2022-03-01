@@ -12,21 +12,19 @@ class Solution:
             return False
        
         def dfs(node):
+            
+            if not node.left and not node.right:
+                return (self.path_sum + node.val) == targetSum
+                
             self.path_sum+=node.val
             
-            left = dfs(node.left) if node.left else None
-            right =  dfs(node.right) if node.right else None
+            left = dfs(node.left) if node.left else False
+            right =  dfs(node.right) if node.right else False
             
+            self.path_sum -= node.val
+            ans = left or right
+            return ans
             
-            if left != None or right != None:
-                right = True if right else False
-                self.path_sum -= node.val
-                return left or right 
-            
-            else:
-                ans = (targetSum == self.path_sum)
-                self.path_sum -= node.val
-                return ans
             
         return dfs(root)
 
