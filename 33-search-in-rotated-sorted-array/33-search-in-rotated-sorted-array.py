@@ -1,8 +1,6 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         def k_finder():
-            frst_val = nums[0]
-            last_val = nums[-1]
             left = 0
             right = len(nums)-1
             
