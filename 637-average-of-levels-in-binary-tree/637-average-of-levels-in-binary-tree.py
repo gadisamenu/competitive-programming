@@ -20,8 +20,8 @@ class Solution:
                 ans.append(cur[0].val)
                 n_cl = 1
                 
-            if cur[0].left != None:q.append((cur[0].left,cur[1]+1))
-            if cur[0].right != None:q.append((cur[0].right,cur[1]+1))
+            if cur[0].left: q.append((cur[0].left,cur[1]+1))
+            if cur[0].right: q.append((cur[0].right,cur[1]+1))
                 
         ans[-1]/=n_cl
         return ans
