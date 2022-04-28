@@ -6,7 +6,6 @@ class Trie:
     def insert(self, word: str) -> None:
         temp = self.root
         for char in word:
-            char.lower()
             if not temp.childrens[ord(char)-97]: temp.childrens[ord(char)-97] = Node()
             temp = temp.childrens[ord(char)-97]
         temp.is_end = True
