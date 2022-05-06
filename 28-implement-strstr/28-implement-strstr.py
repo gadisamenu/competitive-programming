@@ -1,8 +1,5 @@
 class Solution:
-    def strStr(self, haystack: str, needle: str) -> int:
-        needle = list(needle)
-        haystack = list(haystack)
-        
+    def strStr(self, haystack: str, needle: str) -> int:        
         i = 0
         j = len(needle)-1
         while j < len(haystack):
