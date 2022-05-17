@@ -1,6 +1,11 @@
 class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
-        if n < 0:
+        ones = bin(n)
+        if ones[0] == "-":
             return False
-        ones = bin(n).count("1")
-        return True if ones == 1 else False
+        seen = False
+        for n in ones:
+            if  n == "1":
+                if seen:return False
+                seen = True
+        return True if seen else False
