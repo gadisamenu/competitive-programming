@@ -10,9 +10,6 @@ class Solution:
         def helper(start:int,end:int)->TreeNode:
             if start > end:
                 return 
-            if start == end:
-                return TreeNode(nums[end])
-            
             mdl = start + (end-start)//2
             return TreeNode(nums[mdl],helper(start, mdl-1),helper(mdl+ 1, end))
         
