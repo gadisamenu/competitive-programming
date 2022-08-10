@@ -1,9 +1,10 @@
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
+        isvalid = lambda ind,lgth:(lgth - ind)%2 == 0 and "*"*((lgth - ind )//2)  ==  "".join([x if ind%2 == 1 else "" for ind, x in enumerate(p[ind:])])
         @cache
         def dp(s_ind:int,p_ind:int)-> bool:
             if  s_ind == len(s):
-                return True if p_ind == len(p) or ((len(p) - p_ind)%2 == 0 and "*"*((len(p) - p_ind )//2)  ==  "".join([x if ind%2 == 1 else "" for ind, x in enumerate(p[p_ind:])])) else False
+                return True if p_ind == len(p) or isvalid(p_ind,len(p))  else False
             
             if p_ind == len(p):  return False
             
