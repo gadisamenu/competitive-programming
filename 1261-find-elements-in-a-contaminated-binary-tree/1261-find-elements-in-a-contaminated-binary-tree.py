@@ -12,7 +12,7 @@ class FindElements:
         stack = [root]
         while stack:
             node =stack.pop()
-            self.elements.add(node.val)
+            self.elements.add(str(node.val))
     
             if node.left:
                 node.left.val = 2*node.val +1
@@ -22,7 +22,7 @@ class FindElements:
                 stack.append(node.right)
 
     def find(self, target: int) -> bool:
-        return True if target in self.elements else False
+        return True if str(target) in self.elements else False
 
         
 
