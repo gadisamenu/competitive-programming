@@ -6,23 +6,10 @@
 #         self.right = right
 class Solution:
     def pruneTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        
-        def helper(node):
-            ans = False if node.val == 1 else True
-            if node.left:
-                left = helper(node.left)
-                if left: node.left  = None
-                ans &= left
-                
-            if node.right:
-                right = helper(node.right)
-                if right: node.right = None
-                ans&=right
-            return ans
-        
-        root = TreeNode(0,root)
-        
-        helper(root)
-        return root.left
+        if not root: return
+        root.left = self.pruneTree(root.left)
+        root.right =self.pruneTree(root.right)
+        return root if root.val == 1 or root.left or root.right else None
+    
             
         
