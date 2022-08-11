@@ -6,7 +6,7 @@ class Solution:
             if ans:
                 _gcd =  gcd(ans[-1],nums[ind])
                 if _gcd > 1:
-                    nums[ind] = (nums[ind]*ans.pop())//_gcd
+                    nums[ind] = lcm(nums[ind], ans.pop())
                 else:
                     ans.append(nums[ind])
                     ind += 1
