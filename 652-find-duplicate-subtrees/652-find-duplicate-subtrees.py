@@ -10,16 +10,11 @@ class Solution:
         ans = defaultdict(int)
 
         def dup(node):
-            if not node.left and not node.right:
-                subtre = (node.val,'w')
-                
-            elif node.left:
-                if node.right: subtre= dup(node.left)+ ('l',node.val,'r') + dup(node.right)
-                else: subtre= dup(node.left) + ('l',node.val,)
             
-            elif node.right:
-                subtre = (node.val,'r') + dup(node.right)
+            left = dup(node.left) if node.left else ""
+            right = dup(node.right) if node.right else ""
             
+            subtre =  str(node.val) + "l"+ left + "r"+ right            
                 
             if subtre in memory:
                 if not ans[subtre]:
