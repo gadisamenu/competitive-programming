@@ -1,24 +1,18 @@
 class Solution:
     def minRefuelStops(self, target: int, startFuel: int, stations: List[List[int]]) -> int:
-        if not stations:
-            return -1 if target > startFuel else 0
+        lgth = len(stations)
         heap =[]
-        sm = startFuel
-        
         count = 0
-        
-        for ind in range(len(stations)):
-            if stations[ind][0] <= sm:
+        ind = 0
+        while startFuel < target:
+            while ind < lgth and startFuel >= stations[ind][0]:
                 heappush(heap,-stations[ind][1])
-            elif heap:
-                while heap and stations[ind][0] > sm :
-                    count+= 1
-                    sm += - heappop(heap)
-                if stations[ind][0] <= sm:
-                    heappush(heap,-stations[ind][1])
+                ind += 1
+                
+            if heap:
+                count+= 1
+                startFuel += - heappop(heap)
             else:
                 return -1
-        while heap and target > sm:
-            sm += - heappop(heap)
-            count += 1
-        return -1 if target > sm else count
+            
+        return count
