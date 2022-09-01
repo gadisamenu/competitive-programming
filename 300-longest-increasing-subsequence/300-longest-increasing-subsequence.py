@@ -1,20 +1,14 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        @cache
-        def dp(ind):            
-            if ind == 0:
-                return 1
-            
-            ans = 1
-            for n in range(ind-1,-1,-1):
-                if nums[ind] > nums[n]:
-                    ans = max(ans,dp(n)+1)
-            return ans
-        
-        ans = 0
-        for n in range(len(nums)):
-            ans = max(ans,dp(n))
-            
-        return ans
+           
+        f = []
+        for i in range(len(nums)):
+            if not f or nums[i] > f[-1]:
+                f.append(nums[i])
+            else:
+                pos = bisect.bisect_left(f, nums[i])
+                f[pos] = nums[i]
+        return len(f)
+    
                 
             
