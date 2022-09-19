@@ -6,11 +6,12 @@
 #         self.right = right
 class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-        def dfs(inord,post):
-            if not post: return None
-            ind = inord.index(post[-1])            
-            return TreeNode(post[-1], dfs(inord[:ind],post[:ind]), dfs(inord[ind+1:],post[ind:-1]))
+        def dfs(j,si,sj):
+            if si > sj: return None
+            if si==sj:return  TreeNode(postorder[j])
+            ind = inorder.index(postorder[j],si,sj+1)
+            return TreeNode( postorder[j], dfs(j-(sj-ind+1),si,ind-1), dfs(j-1,ind+1,sj))
         
-        return dfs(inorder,postorder)
+        return dfs(len(postorder)-1,0,len(postorder)-1)
     
  
