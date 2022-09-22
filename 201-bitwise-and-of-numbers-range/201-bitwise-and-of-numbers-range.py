@@ -1,10 +1,10 @@
 class Solution:
     def rangeBitwiseAnd(self, left: int, right: int) -> int:
         bits =[1 for i in range(32)]
-        
+        num = right
+        j = 0
         for i in range(32):
-            num = right &~(1 << i)
-            j = 0
+            num = num &~(1 << i)
             while num < left and  j < i:
                 num |= 1 << j
                 j+= 1
