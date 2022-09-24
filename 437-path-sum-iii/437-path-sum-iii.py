@@ -12,16 +12,14 @@ class Solution:
         self.prefix[0]+=1
         
         def dfs(node):
-            if node:
-                self.sum += node.val
-                self.count += self.prefix[self.sum -targetSum]
-                self.prefix[self.sum] += 1
-                dfs(node.left)
-                dfs(node.right)
-                self.prefix[self.sum] -=1
-                self.sum -= node.val
-            
-                
-        dfs(root)
+            self.sum += node.val
+            self.count += self.prefix[self.sum -targetSum]
+            self.prefix[self.sum] += 1
+            if node.left: dfs(node.left)
+            if node.right: dfs(node.right)
+            self.prefix[self.sum] -=1
+            self.sum -= node.val
+  
+        if root: dfs(root)
         return self.count
                
