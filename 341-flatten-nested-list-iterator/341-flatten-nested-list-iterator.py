@@ -22,21 +22,22 @@
 
 class NestedIterator:
     def __init__(self, nestedList: [NestedInteger]):
-        self.flat = []
-        self.ind =  0
-        def recr(nL):
-            for i in range(len(nL)):
-                
-                if nL[i].isInteger(): self.flat.append(nL[i].getInteger())
-                else: recr(nL[i].getList())
-        recr(nestedList)
+        self.num = []
+        def itrator(nestedList):
+            for i in range(len(nestedList)):
+                if nestedList[i].isInteger():
+                    self.num.append(nestedList[i].getInteger())
+                else:
+                    itrator(nestedList[i].getList())
+        itrator(nestedList)
+        self.idx = 0
             
     def next(self) -> int:
-        self.ind += 1
-        return self.flat[self.ind-1]
-    
+        cur = self.num[self.idx]
+        self.idx += 1
+        return cur 
     def hasNext(self) -> bool:
-        return True if self.ind < len(self.flat) else False
+        return True if self.idx < len(self.num) else False
          
 
 # Your NestedIterator object will be instantiated and called as such:
