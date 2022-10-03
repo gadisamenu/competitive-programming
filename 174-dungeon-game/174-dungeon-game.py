@@ -1,32 +1,29 @@
 class Solution:
     def calculateMinimumHP(self, dungeon: List[List[int]]) -> int:
-        row = len(dungeon) -1
+        row = len(dungeon)-1
         col = len(dungeon[0])-1
-        ans = 1
-        heap = [(-dungeon[0][0],0,0)]
-        costs = defaultdict(lambda:float("inf"))
-        costs[(0,0)] = -dungeon[0][0] 
         
-        while heap:
-            cost,r,c = heappop(heap)
-            ans = max(cost+1,ans)
-            if r== row and c == col: break
-            
-            rn= r+1
-            cn = c+1
-            if rn <= row:
-                nc = cost - dungeon[rn][c]
-                if nc < costs[(rn,c)]:
-                    costs[(rn,c)] = nc
-                    heappush(heap,(nc,rn,c))
+        dp = deque()
+        sm = 0
+        for i in range(col,-1,-1):
+            sm += dungeon[-1][i]
+            dp.appendleft(sm)
+            if sm > 0:sm = 0
                 
-            if cn <= col:
-                nc = cost - dungeon[r][cn]
-                if nc < costs[(r,cn)]:
-                    costs[(r,cn)] = nc
-                    heappush(heap,(nc,r,cn))
-        
-        return ans
+        for r in range(row-1,-1,-1):
+            for c in range(col,-1,-1):
+                if c == col:
+                    if dp[c] < 0: dp[c] += dungeon[r][c]
+                    else: dp[c] = dungeon[r][c]
+                else:
+                    m = max(dp[c],dp[c+1])
+                    if m < 0: dp[c]= m + dungeon[r][c]
+                    else:dp[c] = dungeon[r][c]
+                        
+        return abs(dp[0])+1 if dp[0] < 0 else 1
+                
+                
        
+    
             
             
