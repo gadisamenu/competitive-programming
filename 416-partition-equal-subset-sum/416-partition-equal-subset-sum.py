@@ -7,6 +7,7 @@ class Solution:
         @cache
         def dp(ind,sm):
             if sm == _sum: return True
+            if sm > _sum: return False
             if ind >= len(nums): return False
             return dp(ind+1, sm + nums[ind]) or dp(ind+1,sm)
             
