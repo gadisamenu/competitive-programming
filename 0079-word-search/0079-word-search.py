@@ -14,8 +14,7 @@ class Solution:
         
         DIR = [0,1,0,-1,0]
         is_valid = lambda r,c,i : -1 < r < row and -1 < c < col and board[r][c] == word[i]
-    
-    
+        
     
         def dfs(r,c,i):
             if i+1 >= len(word): return True
