@@ -2,8 +2,19 @@ class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         row = len(board)
         col = len(board[0])
+        wordCount = Counter(word)
+        boardCount = defaultdict(int)
+        for i in range(row):
+            for j in range(col):
+                boardCount[board[i][j]] += 1
+        for w in word:
+            if boardCount[w] < wordCount[w]:
+                return False
+            
+        
         DIR = [0,1,0,-1,0]
         is_valid = lambda r,c,i : -1 < r < row and -1 < c < col and board[r][c] == word[i]
+    
     
     
         def dfs(r,c,i):
