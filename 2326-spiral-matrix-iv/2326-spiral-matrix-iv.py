@@ -13,26 +13,24 @@ class Solution:
         next_direction = {"up":"right","down":"left","right":"down","left":"up"}
         next_cell = {"up":(-1,0),"down":(1,0),"right":(0,1),"left":(0,-1)}
         
-        self.direction = "right"
-        self.head = head
+        direction = "right"
         
-        def fill_cell(row,col):
-            if not self.head:
-                return matrix
+        stack = (0,0)
+        while stack and head:
+            row,col = stack
+            matrix[row][col] = head.val
+            head = head.next
             
-            matrix[row][col] = self.head.val
-            self.head = self.head.next
-            
-            next_row = row + next_cell[self.direction][0]
-            next_col = col + next_cell[self.direction][1]
+            next_row = row + next_cell[direction][0]
+            next_col = col + next_cell[direction][1]
             
             if not isvalid_move(next_row,next_col):
-                self.direction =  next_direction[self.direction]
-                next_row = row + next_cell[self.direction][0]
-                next_col = col + next_cell[self.direction][1]
+                direction =  next_direction[direction]
+                next_row = row + next_cell[direction][0]
+                next_col = col + next_cell[direction][1]
                 
-            return fill_cell(next_row,next_col)
+            stack = next_row,next_col
                 
 
-        return fill_cell(0,0)
+        return matrix
     
