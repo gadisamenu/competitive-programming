@@ -5,8 +5,8 @@ class Solution:
         
         matrix = [[0 for i in range(n)] for j in range(n)]
         
-        next_direction = {"up":"left","down":"right","left":"down","right":"up"}
-        next_cell = {"up":(-1,0),"down":(1,0),"left":(0,1),"right":(0,-1)}
+        next_direction = {"up":"right","down":"left","right":"down","left":"up"}
+        next_cell = {"up":(-1,0),"down":(1,0),"right":(0,1),"left":(0,-1)}
         
         self.invalid = 0
         self.current_number = 1
@@ -26,7 +26,7 @@ class Solution:
                 if self.invalid  > 1:return 
                 fill(next_direction[direction],row,col)
                 
-        fill("left",0,0)
+        fill("right",0,0)
     
         return matrix
             
