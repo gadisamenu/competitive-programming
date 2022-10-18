@@ -10,23 +10,24 @@ class Solution:
         
         self.invalid = 0
         self.current_number = 1
-        
-        def fill(direction,row,col):
+        self.direction = "right"
+        def fill_cell(row,col):
             matrix[row][col] = self.current_number
             
-            next_row = row + next_cell[direction][0]
-            next_col = col + next_cell[direction][1]
+            next_row = row + next_cell[self.direction][0]
+            next_col = col + next_cell[self.direction][1]
 
             if isvalid_move(next_row,next_col):
                 self.invalid = 0
                 self.current_number += 1
-                fill(direction,next_row,next_col)
+                fill_cell(next_row,next_col)
             else:
                 self.invalid +=1
                 if self.invalid  > 1:return 
-                fill(next_direction[direction],row,col)
+                self.direction=  next_direction[self.direction]
+                fill_cell(row,col)
                 
-        fill("right",0,0)
+        fill_cell(0,0)
     
         return matrix
             
