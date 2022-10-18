@@ -1,6 +1,5 @@
 class Solution:
     def generateMatrix(self, n: int) -> List[List[int]]:
-        break_point= n**2
         isvalid_move = lambda r,c: -1 < r < n and -1 < c < n and matrix[r][c] == 0
         
         matrix = [[0 for i in range(n)] for j in range(n)]
