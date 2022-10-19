@@ -6,26 +6,27 @@ class Solution:
         
         next_direction = {"up":"right","down":"left","right":"down","left":"up"}
         next_cell = {"up":(-1,0),"down":(1,0),"right":(0,1),"left":(0,-1)}
-        self.break_point = n**2+1
-        self.current_number = 1
-        self.direction = "right"
+        break_point = n**2+1
+        current_number = 1
+        direction = "right"
         
-        def fill_cell(row,col):
-            if self.current_number == self.break_point:
-                return 
-            matrix[row][col] = self.current_number
-            self.current_number += 1
-            next_row = row + next_cell[self.direction][0]
-            next_col = col + next_cell[self.direction][1]
+        row = 0
+        col = 0
+        while current_number != break_point:             
+            matrix[row][col] = current_number
+            
+            current_number += 1
+            next_row = row + next_cell[direction][0]
+            next_col = col + next_cell[direction][1]
             
             if not isvalid_move(next_row,next_col):
-                self.direction=  next_direction[self.direction]
-                next_row = row + next_cell[self.direction][0]
-                next_col = col + next_cell[self.direction][1]
+                direction=  next_direction[direction]
+                next_row = row + next_cell[direction][0]
+                next_col = col + next_cell[direction][1]
                 
-            fill_cell(next_row,next_col)
-        
-        fill_cell(0,0)
+            row = next_row
+            col = next_col
+    
     
         return matrix
             
