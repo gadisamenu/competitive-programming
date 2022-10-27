@@ -2,10 +2,8 @@ class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         parent = [i for i in range(len(edges)+1)]
         for edge in edges:
-            ret = self.merge(edge[0],edge[1],parent)
-            
-            if ret:
-                return ret
+            if self.merge(edge[0],edge[1],parent):
+                return edge
 
     def find(self,nd,parent):
         if nd == parent[nd]:
@@ -18,8 +16,9 @@ class Solution:
         parent2 = self.find(second,parent)
         parent
         if parent2 == parent1:
-            return [first,second]
+            return True
         parent[parent1] = parent2
+        return False
 
    
 
