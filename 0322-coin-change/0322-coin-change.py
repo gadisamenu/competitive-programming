@@ -1,8 +1,8 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        value = defaultdict(lambda: float("inf"))
+        value = [float("inf") for i in range(amount+1)]
         value[0] = 0
-        coins.sort()
+     
         for birr in range(1,amount+1):
             for c in coins:
                 if birr - c > -1:
