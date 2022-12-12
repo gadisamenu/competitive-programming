@@ -9,9 +9,7 @@ class Solution:
             
             for  num  in range(1,n):
                 if (visited &1 <<  num ) == 0 and (index% num  == 0 or  num %index == 0):
-                    visited |= 1 << num 
-                    answer += dp(index + 1,visited)
-                    visited &= ~(1<<num)
+                    answer += dp(index + 1,visited | 1 << num)
                     
             return answer
                             
