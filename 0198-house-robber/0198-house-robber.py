@@ -1,8 +1,11 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        @cache
-        def dp(index):
-            if index >= len(nums):
-                return 0
-            return max(dp(index+1),dp(index+2)+nums[index])
-        return dp(0)
+        if len(nums) > 1:
+            for i in range(len(nums)-3,-1,-1):
+                nums[i] = max(nums[i+1],nums[i+2]+nums[i])
+                if nums[i+1] < nums[i+2]:
+                    nums[i+1] = nums[i+2]
+
+            nums[0] = max(nums[0],nums[1])
+        return nums[0]
+            
