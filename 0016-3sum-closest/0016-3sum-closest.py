@@ -15,8 +15,7 @@ class Solution:
                     trd -= 1
                 else:
                     _sum = nums[fst] + nums[snd]+ nums[trd]
-                    if _sum == target:
-                        return target
+            
                     distance = _sum - target
                     if abs(distance) < diff:
                         answer = _sum
