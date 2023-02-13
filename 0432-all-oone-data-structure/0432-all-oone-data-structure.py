@@ -9,39 +9,19 @@ class AllOne:
         
 
     def inc(self, key: str) -> None:
-        if self.word_count[key] == 0:
-            if len(self.freq_count[1]) == 0:
-                self.sorted_frequency.add(1)
-            self.freq_count[1].add(key)
-            self.word_count[key] += 1
-        else:
-            if len(self.freq_count[self.word_count[key]]) == 1:
-                self.sorted_frequency.discard(self.word_count[key])
-            self.freq_count[self.word_count[key]].remove(key)
-            self.word_count[key] += 1
-            
-            if len(self.freq_count[self.word_count[key]]) == 0:
-                self.sorted_frequency.add(self.word_count[key])
-            self.freq_count[self.word_count[key]].add(key)
+        if self.word_count[key]:
+            self.remove_from_frequency(key)
+        self.word_count[key] += 1
+        self.add_to_frequency(key)
+        
             
             
     def dec(self, key: str) -> None:
-        if self.word_count[key] == 1:
-            if len(self.freq_count[1]) == 1:
-                self.sorted_frequency.discard(1)
-            self.freq_count[1].remove(key)
-            self.word_count[key] -= 1
-        else:
-            if len(self.freq_count[self.word_count[key]]) == 1:
-                self.sorted_frequency.discard(self.word_count[key])
-            self.freq_count[self.word_count[key]].remove(key)
-            
-            self.word_count[key] -= 1
+        self.remove_from_frequency(key)
+        self.word_count[key] -= 1
+        if self.word_count[key]:
+            self.add_to_frequency(key)
         
-            if len(self.freq_count[self.word_count[key]]) == 0:
-                self.sorted_frequency.add(self.word_count[key])
-            self.freq_count[self.word_count[key]].add(key)
-   
 
     def getMaxKey(self) -> str:
         if len(self.sorted_frequency) == 0:
@@ -56,6 +36,17 @@ class AllOne:
         lgth = self.sorted_frequency[0]
         return next(iter(self.freq_count[lgth]))
     
+    
+    def remove_from_frequency(self,key):
+        if len(self.freq_count[self.word_count[key]]) == 1:
+            self.sorted_frequency.discard(self.word_count[key])
+        self.freq_count[self.word_count[key]].remove(key)
+        
+    def add_to_frequency(self,key):
+        if len(self.freq_count[self.word_count[key]]) == 0:
+            self.sorted_frequency.add(self.word_count[key])
+        self.freq_count[self.word_count[key]].add(key)
+
 
 # Your AllOne object will be instantiated and called as such:
 # obj = AllOne()
