@@ -2,6 +2,7 @@ class Solution:
     def diffWaysToCompute(self, expression: str) -> List[int]:
         oper = {"+":operator.add,"-":operator.sub,"*":operator.mul}
         
+        @cache
         def recursion(left, right):
             ans = []
             for i in range(left, right):
